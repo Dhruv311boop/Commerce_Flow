@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Google Fonts loaded non-blocking in index.html via <link media="print" onload="this.media='all'"> */
+/* Fallback font stack ensures text is visible immediately before fonts load */
+
 
 :root {
   /* Colors in OKLCH */

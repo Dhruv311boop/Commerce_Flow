@@ -91,7 +91,16 @@ export default function Header({ activeView, setActiveView }) {
             alignSelf: 'center'
           }}
         >
-          <img src="/logo-full.png" alt="CommerceFlow Logo" className="cf-navbar-logo" />
+          <img
+            src="/logo-full.png"
+            alt="CommerceFlow Logo"
+            className="cf-navbar-logo"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+            width="120"
+            height="32"
+          />
           <span className="cf-navbar-text">CommerceFlow</span>
         </div>
 
