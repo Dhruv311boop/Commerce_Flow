@@ -20,6 +20,7 @@ import {
   inferMappingsHybrid,
   inferMappingsWithLocalAI,
   inferWorkbookMappings,
+  inferWorkbookMappingsHybrid,
   resolveMappingConflicts,
 } from './intelligentImportMapper.js';
 import {
@@ -290,7 +291,6 @@ export async function runProductionImport({
 
   if (datasets && !resolvedSheetMappings) {
     if (useOpenAI) {
-      const { inferWorkbookMappingsHybrid } = await import('./intelligentImportMapper.js');
       const hybrid = await inferWorkbookMappingsHybrid(datasets, sheetTableTypes, { useOpenAI: true });
       resolvedSheetMappings = hybrid.sheetMappings;
       mappingProvider = hybrid.meta?.[Object.keys(hybrid.meta)[0]]?.provider || 'openai+local';
