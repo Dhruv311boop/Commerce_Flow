@@ -3,7 +3,7 @@
 // Handles: JSON data import, column mapping, row parsing, normalization
 // Deploy: this file lives in /api/ at the root of your project
 
-export const config = { runtime: 'nodejs20.x' };
+export const config = { runtime: 'nodejs' };
 
 // ── SYNONYMS DICTIONARY ──────────────────────────────────────────
 const SYNONYMS = {

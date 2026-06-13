@@ -2,7 +2,7 @@
 // Vercel Serverless Function — fetches from live Shopify or WooCommerce APIs
 // Called from the frontend with credentials; proxied here to keep secrets server-side
 
-export const config = { runtime: 'nodejs20.x' };
+export const config = { runtime: 'nodejs' };
 
 async function fetchShopify({ shop, token }) {
   const url = `https://${shop}/admin/api/2024-01/orders.json?limit=250&status=any`;
