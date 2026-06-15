@@ -1,0 +1,139 @@
+{
+  "version": 2,
+  "name": "commerce-flow",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm ci",
+  "devCommand": "npm run dev",
+
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)",     "destination": "/index.html" }
+  ],
+
+  "headers": [
+
+    // ── 1. Hashed JS / CSS / fonts — cache FOREVER at the edge ─────
+    // Vite outputs [name].[contenthash].js — content never changes
+    // so we set immutable + 1 year. Vercel edge caches these globally.
+    {
+      "source": "/assets/(.*)\\.js",
+      "headers": [
+        { "key": "Cache-Control",              "value": "public, max-age=31536000, immutable" },
+        { "key": "CDN-Cache-Control",          "value": "public, max-age=31536000, immutable" },
+        { "key": "Vercel-CDN-Cache-Control",   "value": "public, max-age=31536000, immutable" },
+        { "key": "Content-Type",               "value": "application/javascript; charset=utf-8" },
+        { "key": "X-Content-Type-Options",     "value": "nosniff" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)\\.css",
+      "headers": [
+        { "key": "Cache-Control",              "value": "public, max-age=31536000, immutable" },
+        { "key": "CDN-Cache-Control",          "value": "public, max-age=31536000, immutable" },
+        { "key": "Vercel-CDN-Cache-Control",   "value": "public, max-age=31536000, immutable" },
+        { "key": "Content-Type",               "value": "text/css; charset=utf-8" },
+        { "key": "X-Content-Type-Options",     "value": "nosniff" }
+      ]
+    },
+
+    // ── 2. Static images in /public — cache 30 days at edge ────────
+    {
+      "source": "/images/(.*)\\.(?:png|jpg|jpeg|gif|webp|avif|svg|ico)",
+      "headers": [
+        { "key": "Cache-Control",              "value": "public, max-age=2592000, stale-while-revalidate=86400" },
+        { "key": "CDN-Cache-Control",          "value": "public, max-age=2592000" },
+        { "key": "Vercel-CDN-Cache-Control",   "value": "public, max-age=2592000" },
+        { "key": "Vary",                       "value": "Accept" }
+      ]
+    },
+
+    // ── 3. Hashed asset images (from Vite build) — cache forever ───
+    {
+      "source": "/assets/(.*)\\.(?:png|jpg|jpeg|gif|webp|avif|svg)",
+      "headers": [
+        { "key": "Cache-Control",              "value": "public, max-age=31536000, immutable" },
+        { "key": "CDN-Cache-Control",          "value": "public, max-age=31536000, immutable" },
+        { "key": "Vercel-CDN-Cache-Control",   "value": "public, max-age=31536000, immutable" },
+        { "key": "Vary",                       "value": "Accept" }
+      ]
+    },
+
+    // ── 4. Fonts — cache 1 year, CORS for cross-origin ─────────────
+    {
+      "source": "/assets/(.*)\\.(?:woff|woff2|ttf|otf|eot)",
+      "headers": [
+        { "key": "Cache-Control",              "value": "public, max-age=31536000, immutable" },
+        { "key": "CDN-Cache-Control",          "value": "public, max-age=31536000, immutable" },
+        { "key": "Vercel-CDN-Cache-Control",   "value": "public, max-age=31536000, immutable" },
+        { "key": "Access-Control-Allow-Origin","value": "*" }
+      ]
+    },
+
+    // ── 5. favicon + manifest — cache 24 hours ─────────────────────
+    {
+      "source": "/favicon\\.(?:ico|svg|png)",
+      "headers": [
+        { "key": "Cache-Control",              "value": "public, max-age=86400" },
+        { "key": "CDN-Cache-Control",          "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/manifest\\.(?:json|webmanifest)",
+      "headers": [
+        { "key": "Cache-Control",              "value": "public, max-age=86400" },
+        { "key": "CDN-Cache-Control",          "value": "public, max-age=86400" }
+      ]
+    },
+
+    // ── 6. API routes — never cached at edge ───────────────────────
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control",              "value": "no-store, no-cache, must-revalidate" },
+        { "key": "CDN-Cache-Control",          "value": "no-store" },
+        { "key": "Access-Control-Allow-Origin","value": "*" },
+        { "key": "Access-Control-Allow-Methods","value": "GET,POST,OPTIONS,PUT,DELETE" },
+        { "key": "Access-Control-Allow-Headers","value": "Content-Type, Authorization" }
+      ]
+    },
+
+    // ── 7. HTML shell — always revalidate (SPA entry point) ────────
+    // Short TTL so new deploys roll out quickly.
+    // stale-while-revalidate lets edge serve stale instantly while fetching fresh.
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        { "key": "Cache-Control",              "value": "public, max-age=0, must-revalidate" },
+        { "key": "CDN-Cache-Control",          "value": "public, max-age=60, stale-while-revalidate=3600" },
+        { "key": "Vercel-CDN-Cache-Control",   "value": "public, max-age=60, stale-while-revalidate=3600" }
+      ]
+    },
+
+    // ── 8. Security headers on every response ──────────────────────
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options",    "value": "nosniff" },
+        { "key": "X-Frame-Options",           "value": "DENY" },
+        { "key": "X-XSS-Protection",          "value": "1; mode=block" },
+        { "key": "Referrer-Policy",           "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy",        "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
+    }
+  ],
+
+  "env": {
+    "VITE_APP_ENV": "production",
+    "VITE_APP_VERSION": "1.0.0"
+  },
+
+  "functions": {
+    "api/*.js": {
+      "runtime": "nodejs20.x",
+      "maxDuration": 30
+    }
+  }
+}

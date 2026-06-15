@@ -16,30 +16,35 @@ export default defineConfig({
   build: {
     outDir      : 'dist',
     sourcemap   : false,
-    // NOTE: Vite 8 uses Rolldown/OXC — do NOT set minify:'esbuild'
-    // Vite 8 minifies automatically with OXC (faster than esbuild)
+    minify      : 'esbuild',
     target      : 'es2020',
-    chunkSizeWarningLimit: 900,
+    // Raise limit — we split chunks so individual files stay small
+    chunkSizeWarningLimit: 600,
 
     rollupOptions: {
       output: {
         // ── Content-hash filenames ──────────────────────────────
+        // Every file name contains a hash of its content.
         // When code changes, hash changes → new URL → CDN fetches fresh.
         // When code is unchanged, hash is same → CDN serves from cache forever.
-        entryFileNames : 'assets/[name]-[hash].js',
-        chunkFileNames : 'assets/chunks/[name]-[hash].js',
+        entryFileNames : 'assets/[name].[hash].js',
+        chunkFileNames : 'assets/chunks/[name].[hash].js',
         assetFileNames : (assetInfo) => {
+          // Route assets into typed sub-folders for cleaner cache rules
           const ext = assetInfo.name?.split('.').pop() ?? ''
           if (['png','jpg','jpeg','gif','webp','avif','svg'].includes(ext))
-            return 'assets/images/[name]-[hash][extname]'
+            return 'assets/images/[name].[hash][extname]'
           if (['woff','woff2','ttf','otf','eot'].includes(ext))
-            return 'assets/fonts/[name]-[hash][extname]'
+            return 'assets/fonts/[name].[hash][extname]'
           if (ext === 'css')
-            return 'assets/css/[name]-[hash][extname]'
-          return 'assets/[name]-[hash][extname]'
+            return 'assets/css/[name].[hash][extname]'
+          return 'assets/[name].[hash][extname]'
         },
 
         // ── Manual chunk splitting ──────────────────────────────
+        // Each vendor chunk has its own cache lifetime.
+        // If you update your app code, only your chunk re-downloads —
+        // the vendor chunks stay cached at the edge.
         manualChunks(id) {
           if (id.includes('node_modules/react') ||
               id.includes('node_modules/react-dom'))
@@ -58,9 +63,6 @@ export default defineConfig({
           if (id.includes('node_modules/lenis'))
             return 'vendor-lenis'
 
-          if (id.includes('node_modules/web-vitals'))
-            return 'web-vitals'
-
           // All other node_modules → one shared vendor chunk
           if (id.includes('node_modules'))
             return 'vendor-misc'
@@ -69,10 +71,12 @@ export default defineConfig({
     },
 
     // ── CSS code splitting ──────────────────────────────────────
+    // Each async chunk gets its own CSS file → smaller payloads per route
     cssCodeSplit: true,
 
     // ── Asset inlining threshold ────────────────────────────────
     // Files < 4KB are inlined as base64 (saves a round-trip)
+    // Files ≥ 4KB get their own hashed URL (cached at CDN)
     assetsInlineLimit: 4096,
   },
 
