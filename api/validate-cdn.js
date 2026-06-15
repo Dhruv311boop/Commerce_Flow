@@ -5,7 +5,6 @@
 //
 // Call it: https://commerce-flow-beige.vercel.app/api/validate-cdn
 
-export const config = { runtime: 'nodejs20.x' }
 
 const ASSET_PATTERNS = [
   // HTML shell
