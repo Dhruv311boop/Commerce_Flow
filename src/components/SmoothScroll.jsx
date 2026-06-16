@@ -10,6 +10,10 @@ export function SmoothScrollProvider({ children }) {
   const [lenis, setLenis] = useState(null);
 
   useEffect(() => {
+    // Disable Lenis on mobile devices to use native, performant momentum scrolling
+    const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+    if (isMobile) return;
+
     const lenisInstance = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Inertia-based easing

@@ -38,7 +38,8 @@ export default function ParticleCanvas() {
 
     // Populate particles
     const particles = [];
-    const particleCount = 75;
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 15 : 75; // Heavily reduce particles on mobile to save GPU
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
