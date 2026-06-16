@@ -1,4 +1,5 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { SmoothScrollProvider } from './components/SmoothScroll';
 import ParticleCanvas from './components/ParticleCanvas';
 import Header from './components/Header';
@@ -106,6 +107,9 @@ function App() {
           <DashboardView />
         </Suspense>
       )}
+      
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </SmoothScrollProvider>
   );
 }
