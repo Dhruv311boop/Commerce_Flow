@@ -221,7 +221,7 @@ export default function HeroSection({ setActiveView }) {
           }}
         >
           <Sparkles size={14} className="text-purple-400" style={{ color: 'oklch(0.75 0.18 290)' }} />
-          <span className="text-xs font-bold tracking-wider uppercase text-purple-200" style={{ fontSize: '0.75rem', fontWeight: 600, color: 'white', letterSpacing: '0.12em' }}>
+          <span className="text-xs font-bold tracking-wider uppercase" style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)', letterSpacing: '0.12em' }}>
             AI-Powered Commerce Platform
           </span>
         </motion.div>
@@ -254,7 +254,7 @@ export default function HeroSection({ setActiveView }) {
                 style={{ 
                   display: 'inline-block', 
                   marginRight: '0.25em',
-                  background: isGradient ? 'linear-gradient(135deg, #a855f7 0%, #3b82f6 100%)' : 'linear-gradient(to right, #ffffff, #e0e0ff)',
+                  background: isGradient ? 'linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-blue) 100%)' : 'var(--text-primary)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -356,21 +356,17 @@ export default function HeroSection({ setActiveView }) {
                 rotateY: mouseRotateY,
                 rotateX: mouseRotateX,
                 transformStyle: 'preserve-3d',
-                boxShadow: '0 54px 150px -28px rgba(0, 0, 0, 0.82), 0 24px 80px rgba(59, 130, 246, 0.14), 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 95px rgba(168, 85, 247, 0.16)',
+                boxShadow: '0 24px 60px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--border)',
                 overflow: 'hidden',
                 borderRadius: '22px',
-                border: '1px solid rgba(255, 255, 255, 0.11)',
                 display: 'flex',
                 flexDirection: 'row',
                 minHeight: '660px',
-                background: 'linear-gradient(135deg, rgba(18, 18, 24, 0.86), rgba(7, 8, 13, 0.78))',
-                backdropFilter: 'blur(34px)',
-                WebkitBackdropFilter: 'blur(34px)',
               }}
             >
             
             {/* Vertical Sidebar Navigation */}
-            <div className="cf-hero-workflow-sidebar" style={{ width: '310px', borderRight: '1px solid rgba(255,255,255,0.075)', padding: '34px 28px', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+            <div className="cf-hero-workflow-sidebar" style={{ width: '310px', borderRight: '1px solid var(--border)', padding: '34px 28px', display: 'flex', flexDirection: 'column', position: 'relative' }}>
               <div className="cf-hero-console-brand" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', marginBottom: '54px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <img src="/logo-full.png" alt="Commerce Flow" className="cf-hero-logo" style={{ width: '40px', height: '40px', objectFit: 'contain', flexShrink: 0 }} />
@@ -387,8 +383,8 @@ export default function HeroSection({ setActiveView }) {
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '38px', position: 'relative' }}>
                 {/* Glowing animated line connecting steps */}
-                <div style={{ position: 'absolute', left: '23px', top: '27px', bottom: '27px', width: '2px', background: 'linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025))', zIndex: 0 }} />
-                <div style={{ position: 'absolute', left: '23px', top: '27px', height: `${(activeStep - 1) * 33.33}%`, width: '2px', background: 'linear-gradient(180deg, var(--accent-purple), var(--accent-blue), var(--accent-cyan))', zIndex: 1, transition: 'height 0.45s cubic-bezier(0.16, 1, 0.3, 1)', boxShadow: '0 0 18px rgba(168,85,247,0.8)' }} />
+                <div style={{ position: 'absolute', left: '23px', top: '27px', bottom: '27px', width: '2px', background: 'var(--border)', zIndex: 0 }} />
+                <div style={{ position: 'absolute', left: '23px', top: '27px', height: `${(activeStep - 1) * 33.33}%`, width: '2px', background: 'linear-gradient(180deg, var(--accent-purple), var(--accent-blue))', zIndex: 1, transition: 'height 0.45s cubic-bezier(0.16, 1, 0.3, 1)', boxShadow: '0 0 12px var(--accent-purple-glow)' }} />
 
                 {[
                   { id: 1, icon: Link2, label: 'Connect Store' },
@@ -407,11 +403,11 @@ export default function HeroSection({ setActiveView }) {
                     >
                       <div style={{ 
                         width: '48px', height: '48px', borderRadius: '14px', 
-                        background: isActive ? 'linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(59, 130, 246, 0.14))' : isPast ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.045)', 
-                        border: `1px solid ${isActive ? 'rgba(168, 85, 247, 0.52)' : 'rgba(255,255,255,0.04)'}`,
+                        background: isActive ? 'var(--accent-purple-glow)' : isPast ? 'var(--bg-card-hover)' : 'var(--bg-input)', 
+                        border: `1px solid ${isActive ? 'var(--accent-purple)' : 'var(--border)'}`,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         transition: 'all 0.3s ease',
-                        boxShadow: isActive ? '0 0 28px rgba(168, 85, 247, 0.34), inset 0 1px 0 rgba(255,255,255,0.12)' : 'inset 0 1px 0 rgba(255,255,255,0.04)',
+                        boxShadow: isActive ? '0 0 16px var(--accent-purple-glow)' : 'none',
                         transform: isActive ? 'scale(1.1)' : 'scale(1)'
                       }}>
                         <step.icon size={23} style={{ color: isActive ? 'var(--accent-purple)' : 'var(--text-secondary)' }} />
@@ -426,7 +422,7 @@ export default function HeroSection({ setActiveView }) {
             </div>
 
             {/* Main Content Area (Unified Dashboard Summary) */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '36px', background: 'radial-gradient(circle at top right, rgba(168,85,247,0.07) 0%, transparent 62%)' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '36px', background: 'var(--bg-card)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '34px', gap: '20px' }}>
                 <div style={{ textAlign: 'left' }}>
                   <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.14em', fontWeight: 700, marginBottom: '8px' }}>Unified Operations</div>
@@ -445,19 +441,19 @@ export default function HeroSection({ setActiveView }) {
 
               {/* Data Grid */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginBottom: '24px' }}>
-                <div className="glass" style={{ padding: '20px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.04)', backgroundColor: 'rgba(255,255,255,0.015)' }}>
+                <div className="glass" style={{ padding: '20px', borderRadius: '12px', border: '1px solid var(--border)', backgroundColor: 'var(--bg-card-hover)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '8px' }}>
                     <DollarSign size={12} style={{ color: 'var(--accent-purple)' }} /> Total Revenue
                   </div>
                   <div style={{ fontSize: '1.75rem', fontWeight: 700 }}><AnimatedNumber value={isEmpty ? 0 : totalRevenue} isCurrency={true} prefix="$" /></div>
                 </div>
-                <div className="glass" style={{ padding: '20px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.04)', backgroundColor: 'rgba(255,255,255,0.015)' }}>
+                <div className="glass" style={{ padding: '20px', borderRadius: '12px', border: '1px solid var(--border)', backgroundColor: 'var(--bg-card-hover)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '8px' }}>
                     <ClipboardList size={12} style={{ color: 'var(--accent-blue)' }} /> Total Orders
                   </div>
                   <div style={{ fontSize: '1.75rem', fontWeight: 700 }}><AnimatedNumber value={isEmpty ? 0 : totalOrdersCount} /></div>
                 </div>
-                <div className="glass" style={{ padding: '20px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.04)', backgroundColor: 'rgba(255,255,255,0.015)' }}>
+                <div className="glass" style={{ padding: '20px', borderRadius: '12px', border: '1px solid var(--border)', backgroundColor: 'var(--bg-card-hover)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '8px' }}>
                     <ShoppingBag size={12} style={{ color: 'var(--accent-cyan)' }} /> Active Products
                   </div>
@@ -467,7 +463,7 @@ export default function HeroSection({ setActiveView }) {
 
               {/* AI Insights & Trend Row */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', flex: 1 }}>
-                <div className="glass" style={{ padding: '24px', borderRadius: '12px', border: '1px solid rgba(168, 85, 247, 0.15)', background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.05) 0%, transparent 100%)', display: 'flex', flexDirection: 'column' }}>
+                <div className="glass" style={{ padding: '24px', borderRadius: '12px', border: '1px solid var(--accent-purple)', background: 'var(--accent-purple-glow)', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
                     <BrainCircuit size={16} style={{ color: 'var(--accent-purple)' }} />
                     <h4 style={{ fontSize: '0.9rem', fontWeight: 700, textTransform: 'uppercase' }}>AI Engine Insights</h4>
@@ -475,7 +471,7 @@ export default function HeroSection({ setActiveView }) {
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-primary)', lineHeight: 1.6, flex: 1 }}>
                     {getAIInsight()}
                   </p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 14px', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)', fontSize: '0.8rem', marginTop: '16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 14px', borderRadius: '8px', backgroundColor: 'var(--bg-input)', border: '1px solid var(--border)', fontSize: '0.8rem', marginTop: '16px' }}>
                     <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: lowStockProducts.length > 0 ? '#f59e0b' : 'var(--accent-green)' }} />
                     <span style={{ color: 'var(--text-secondary)' }}>
                       {getInventoryStatus()}
@@ -483,7 +479,7 @@ export default function HeroSection({ setActiveView }) {
                   </div>
                 </div>
 
-                <div className="glass" style={{ padding: '24px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.04)', backgroundColor: 'rgba(255,255,255,0.015)', display: 'flex', flexDirection: 'column' }}>
+                <div className="glass" style={{ padding: '24px', borderRadius: '12px', border: '1px solid var(--border)', backgroundColor: 'var(--bg-card-hover)', display: 'flex', flexDirection: 'column' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                     <h4 style={{ fontSize: '0.9rem', fontWeight: 700, textTransform: 'uppercase' }}>Revenue Trajectory</h4>
                     <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--accent-green)' }}>+24.6%</span>
