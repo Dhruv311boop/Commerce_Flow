@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import { SmoothScrollProvider } from './components/SmoothScroll';
 import ParticleCanvas from './components/ParticleCanvas';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
-import FeaturesSection from './components/FeaturesSection';
-import ShowcaseSection from './components/ShowcaseSection';
-import CapabilitiesSection from './components/CapabilitiesSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import DashboardView from './components/DashboardView';
+
+const FeaturesSection = lazy(() => import('./components/FeaturesSection'));
+const ShowcaseSection = lazy(() => import('./components/ShowcaseSection'));
+const CapabilitiesSection = lazy(() => import('./components/CapabilitiesSection'));
+const TestimonialsSection = lazy(() => import('./components/TestimonialsSection'));
+const DashboardView = lazy(() => import('./components/DashboardView'));
 
 function App() {
   const [activeView, setActiveView] = useState('landing'); // 'landing' | 'dashboard'
@@ -93,13 +94,17 @@ function App() {
       {activeView === 'landing' ? (
         <>
           <HeroSection setActiveView={setActiveView} />
-          <FeaturesSection setActiveView={setActiveView} />
-          <ShowcaseSection />
-          <CapabilitiesSection />
-          <TestimonialsSection />
+          <Suspense fallback={<div style={{ minHeight: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--text-muted)' }}>Loading interface...</div>}>
+            <FeaturesSection setActiveView={setActiveView} />
+            <ShowcaseSection />
+            <CapabilitiesSection />
+            <TestimonialsSection />
+          </Suspense>
         </>
       ) : (
-        <DashboardView />
+        <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--text-muted)' }}>Loading dashboard...</div>}>
+          <DashboardView />
+        </Suspense>
       )}
     </SmoothScrollProvider>
   );

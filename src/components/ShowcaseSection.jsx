@@ -154,18 +154,8 @@ export default function ShowcaseSection() {
           {slides.map((slide, index) => (
             <div 
               key={index} 
-              className="glass"
+              className="glass cf-showcase-card"
               style={{
-                width: '65vw',
-                maxWidth: '620px',
-                height: '420px',
-                flexShrink: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                padding: '36px',
-                boxShadow: '0 20px 80px rgba(0, 0, 0, 0.5)',
-                border: '1px solid rgba(255, 255, 255, 0.06)',
                 position: 'relative',
                 overflow: 'hidden'
               }}
@@ -206,7 +196,7 @@ export default function ShowcaseSection() {
               </div>
 
               {/* Lower Section (Split into text desc & visual mockup) */}
-              <div style={{ display: 'flex', gap: '24px', marginTop: '24px', alignItems: 'stretch' }}>
+              <div className="cf-showcase-lower" style={{ marginTop: '24px' }}>
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '16px' }}>
                     {slide.desc}

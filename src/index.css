@@ -1083,6 +1083,15 @@ p {
 
 .cf-hero-dashboard-panel {
   position: relative;
+  z-index: 2;
+  flex-direction: row;
+}
+
+.cf-hero-workflow-sidebar {
+  width: 310px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)),
+    radial-gradient(circle at 20% 10%, rgba(168,85,247,0.11), transparent 42%);
 }
 
 .cf-hero-dashboard-panel::before {
@@ -1388,7 +1397,7 @@ p {
   .cf-hero-workflow-sidebar {
     width: 100% !important;
     border-right: 0 !important;
-    border-bottom: 1px solid rgba(255,255,255,0.075);
+    border-bottom: 1px solid var(--border) !important;
     padding: 24px !important;
   }
 
@@ -1588,4 +1597,37 @@ p {
 .dashboard-light-theme select option {
   background-color: #ffffff !important;
   color: #0f172a !important;
+}
+
+/* Showcase Section Responsive Styles */
+.cf-showcase-card {
+  width: 65vw;
+  max-width: 620px;
+  height: 420px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 36px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cf-showcase-lower {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .cf-showcase-card {
+    width: 85vw !important;
+    height: auto !important;
+    min-height: 420px;
+    padding: 24px !important;
+  }
+  .cf-showcase-lower {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
 }

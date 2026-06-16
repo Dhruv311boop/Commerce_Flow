@@ -360,13 +360,12 @@ export default function HeroSection({ setActiveView }) {
                 overflow: 'hidden',
                 borderRadius: '22px',
                 display: 'flex',
-                flexDirection: 'row',
                 minHeight: '660px',
               }}
             >
             
             {/* Vertical Sidebar Navigation */}
-            <div className="cf-hero-workflow-sidebar" style={{ width: '310px', borderRight: '1px solid var(--border)', padding: '34px 28px', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+            <div className="cf-hero-workflow-sidebar" style={{ borderRight: '1px solid var(--border)', padding: '34px 28px', display: 'flex', flexDirection: 'column', position: 'relative' }}>
               <div className="cf-hero-console-brand" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', marginBottom: '54px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <img src="/logo-full.png" alt="Commerce Flow" className="cf-hero-logo" style={{ width: '40px', height: '40px', objectFit: 'contain', flexShrink: 0 }} />
