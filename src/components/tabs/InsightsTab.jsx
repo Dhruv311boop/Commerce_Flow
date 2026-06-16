@@ -595,7 +595,7 @@ export default function InsightsTab({ products, orders, customers }) {
             </motion.div>
           )}
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '24px', alignItems: 'flex-start' }}>
+          <div className="cf-insights-grid-split" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '24px', alignItems: 'flex-start' }}>
           
           {/* Executive Performance Summary */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -821,7 +821,7 @@ export default function InsightsTab({ products, orders, customers }) {
       {/* 3. INTELLIGENCE DETAILS SCREEN                           */}
       {/* ======================================================== */}
       {analyticsSection === 'Intelligence' && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+        <div className="cf-insights-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
           
           {/* Product Intelligence */}
           <div className="glass" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -1034,7 +1034,7 @@ export default function InsightsTab({ products, orders, customers }) {
       {/* 4. VISUALIZATIONS SCREEN (7 DYNAMIC NATIVE SVGS!)         */}
       {/* ======================================================== */}
       {analyticsSection === 'Visualizations' && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+        <div className="cf-insights-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
           
           {/* A. Sales by Product Category Donut */}
           <div className="glass" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>

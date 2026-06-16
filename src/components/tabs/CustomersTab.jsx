@@ -380,11 +380,11 @@ export default function CustomersTab({ customers, orders, products, addCustomer,
               </div>
               <div><label style={labelStyle}>Full Name *</label><input style={inputStyle} value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} placeholder="e.g. Dhruv Chaudhary" required /></div>
               <div><label style={labelStyle}>Email Address *</label><input style={inputStyle} type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} placeholder="dhruv@example.com" required /></div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '12px' }}>
+              <div className="cf-form-grid-split" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '12px' }}>
                 <div><label style={labelStyle}>Phone Number</label><input style={inputStyle} value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} placeholder="555-0199" /></div>
                 <div><label style={labelStyle}>Age *</label><input style={inputStyle} type="number" min="1" max="120" value={form.age} onChange={e => setForm(p => ({ ...p, age: e.target.value }))} placeholder="25" required /></div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '12px' }}>
+              <div className="cf-form-grid-split" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '12px' }}>
                 <div><label style={labelStyle}>City *</label><input style={inputStyle} value={form.city} onChange={e => setForm(p => ({ ...p, city: e.target.value }))} placeholder="e.g. Mumbai" required /></div>
                 <div><label style={labelStyle}>State *</label><input style={inputStyle} value={form.state} onChange={e => setForm(p => ({ ...p, state: e.target.value }))} placeholder="e.g. MH" required /></div>
               </div>
@@ -527,11 +527,11 @@ export default function CustomersTab({ customers, orders, products, addCustomer,
               </div>
               <div><label style={labelStyle}>Full Name *</label><input style={inputStyle} value={editForm.name} onChange={e => setEditForm(p => ({ ...p, name: e.target.value }))} required /></div>
               <div><label style={labelStyle}>Email Address *</label><input style={inputStyle} type="email" value={editForm.email} onChange={e => setEditForm(p => ({ ...p, email: e.target.value }))} required /></div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '12px' }}>
+              <div className="cf-form-grid-split" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '12px' }}>
                 <div><label style={labelStyle}>Phone</label><input style={inputStyle} value={editForm.phone} onChange={e => setEditForm(p => ({ ...p, phone: e.target.value }))} /></div>
                 <div><label style={labelStyle}>Age *</label><input style={inputStyle} type="number" min="1" max="120" value={editForm.age} onChange={e => setEditForm(p => ({ ...p, age: e.target.value }))} required /></div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '12px' }}>
+              <div className="cf-form-grid-split" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '12px' }}>
                 <div><label style={labelStyle}>City *</label><input style={inputStyle} value={editForm.city} onChange={e => setEditForm(p => ({ ...p, city: e.target.value }))} required /></div>
                 <div><label style={labelStyle}>State *</label><input style={inputStyle} value={editForm.state} onChange={e => setEditForm(p => ({ ...p, state: e.target.value }))} required /></div>
               </div>
