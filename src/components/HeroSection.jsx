@@ -227,9 +227,10 @@ export default function HeroSection({ setActiveView }) {
                 style={{ 
                   display: 'inline-block', 
                   marginRight: '0.25em',
-                  background: isGradient ? 'linear-gradient(135deg, var(--accent-blue) 0%, #ffffff 100%)' : 'var(--text-primary)',
+                  background: isGradient ? 'linear-gradient(135deg, var(--accent-blue) 0%, #ffffff 100%)' : 'none',
                   WebkitBackgroundClip: isGradient ? 'text' : 'unset',
                   WebkitTextFillColor: isGradient ? 'transparent' : 'unset',
+                  color: isGradient ? 'unset' : 'var(--text-primary)',
                 }}
               >
                 {word}
