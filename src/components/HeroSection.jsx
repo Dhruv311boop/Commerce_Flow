@@ -212,24 +212,30 @@ export default function HeroSection({ setActiveView }) {
             color: 'var(--text-primary)'
           }}
         >
-          {words.map((word, idx) => (
-            <motion.span
-              key={idx}
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                duration: 0.8,
-                delay: idx * 0.08,
-                ease: [0.16, 1, 0.3, 1]
-              }}
-              style={{ 
-                display: 'inline-block', 
-                marginRight: '0.25em',
-              }}
-            >
-              {word}
-            </motion.span>
-          ))}
+          {words.map((word, idx) => {
+            const isGradient = ['AI', 'Commerce', 'Business', 'Platform'].some(w => word.includes(w));
+            return (
+              <motion.span
+                key={idx}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.8,
+                  delay: idx * 0.08,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                style={{ 
+                  display: 'inline-block', 
+                  marginRight: '0.25em',
+                  background: isGradient ? 'linear-gradient(135deg, var(--accent-blue) 0%, #ffffff 100%)' : 'var(--text-primary)',
+                  WebkitBackgroundClip: isGradient ? 'text' : 'unset',
+                  WebkitTextFillColor: isGradient ? 'transparent' : 'unset',
+                }}
+              >
+                {word}
+              </motion.span>
+            );
+          })}
         </h1>
 
         {/* Shortened Mobile Headline */}
@@ -242,7 +248,9 @@ export default function HeroSection({ setActiveView }) {
             marginBottom: '16px',
             lineHeight: 1.05,
             letterSpacing: '-0.04em',
-            color: 'var(--text-primary)'
+            background: 'linear-gradient(135deg, var(--accent-blue) 0%, #ffffff 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
           }}
         >
           Commerce AI
