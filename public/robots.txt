@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block crawlers from API routes (they're dynamic, not useful to index)
+Disallow: /api/
+
+Sitemap: https://commerce-flow-beige.vercel.app/sitemap.xml

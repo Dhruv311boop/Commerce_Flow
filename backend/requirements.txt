@@ -1,0 +1,19 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pandas==2.2.3
+openpyxl==3.1.5
+xlrd==2.0.1
+gspread==6.1.4
+google-auth==2.37.0
+WooCommerce==3.0.0
+ShopifyAPI==12.7.0
+requests==2.32.3
+SQLAlchemy==2.0.36
+pymysql==1.1.1
+psycopg2-binary==2.9.10; python_version >= "3.10" or platform_machine != "arm64"
+psycopg[binary]==3.2.13; python_version < "3.10" and platform_machine == "arm64"
+pyodbc==5.2.0
+oracledb==2.5.1
+python-multipart==0.0.20
+pydantic[email]==2.10.4
+eval-type-backport==0.2.2

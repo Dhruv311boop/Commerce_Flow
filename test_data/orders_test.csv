@@ -1,0 +1,11 @@
+Order ID,Customer Name,Customer Email,Order Date,Total Amount,Status,Product SKU,Quantity,City,State
+ORD-1001,Alice Johnson,alice@example.com,2025-03-15,79.99,Delivered,WEP-001,1,Austin,Texas
+ORD-1002,Bob Smith,bob@example.com,2025-03-16,25.00,Delivered,OGT-100,2,Denver,Colorado
+ORD-1003,Carol White,carol@example.com,2025-03-17,129.99,Delivered,RSU-300,1,Portland,Oregon
+ORD-1004,David Brown,david@example.com,2025-03-18,59.99,Delivered,BTS-700,1,Miami,Florida
+ORD-1005,Eva Martinez,eva@example.com,2025-03-20,45.00,Delivered,LW-200,1,Chicago,Illinois
+ORD-1006,Frank Lee,frank@example.com,2025-04-01,159.98,Delivered,WEP-001,2,Austin,Texas
+ORD-1007,Alice Johnson,alice@example.com,2025-04-05,39.99,Delivered,YMP-400,1,Austin,Texas
+ORD-1008,Grace Kim,grace@example.com,2025-04-10,34.99,Processing,PP-900,1,Seattle,Washington
+ORD-1009,Bob Smith,bob@example.com,2025-04-12,22.00,Shipped,BCB-800,1,Denver,Colorado
+ORD-1010,Henry Chen,henry@example.com,2025-04-15,79.98,Delivered,CMS-600,4,New York,New York

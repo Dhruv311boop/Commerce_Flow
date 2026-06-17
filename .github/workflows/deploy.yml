@@ -1,0 +1,33 @@
+name: CI/CD Build Verification
+
+on:
+  push:
+    branches: [ main, feat/production-ai-import-engine ]
+  pull_request:
+    branches: [ main, feat/production-ai-import-engine ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci || npm install
+
+      - name: Run Lint Checks
+        run: npm run lint
+
+      - name: Run Import Tests
+        run: npm run test:import
+
+      - name: Run Production Build
+        run: npm run build
